@@ -87,6 +87,14 @@ const fetchIssues = () => {
    * issue count shower
    */
   issuesCountShower(issues)
+   //total issues
+  //  document.getElementById("totalIssueCounter").innerText = issues.length;
+  //  //open issues
+  //  const openIssues = issues.filter((issue) => issue.status !== "Closed");
+  //  document.getElementById("openIssueCounter").innerText = openIssues.length;
+  //  //closed issues
+  //  const closedIssues = issues.filter((issue) => issue.status === "Closed");
+  //  document.getElementById("closedIssueCounter").innerText = closedIssues.length;
 };
 
 function issuesCountShower(issues) {
