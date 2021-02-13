@@ -50,7 +50,6 @@ const closeIssue = (id) => {
    * solution convert id type string or use ==
    */
   const currentIssue = issues.find((issue) => issue.id === id);
-  console.log(currentIssue);
   currentIssue.status = "Closed";
   localStorage.setItem("issues", JSON.stringify(issues));
   fetchIssues();
@@ -63,12 +62,14 @@ const deleteIssue = (id) => {
    * parameter id toString kora hoyece;
    */
   const remainingIssues = issues.filter((issue) => issue.id !== id);
+  console.log(remainingIssues);
   localStorage.setItem("issues", JSON.stringify(remainingIssues));
   fetchIssues();
 };
 
 const fetchIssues = () => {
   const issues = JSON.parse(localStorage.getItem("issues"));
+  if (issues === null) return;
   const issuesList = document.getElementById("issuesList");
   issuesList.innerHTML = "";
   for (var i = 0; i < issues.length; i++) {
@@ -79,7 +80,7 @@ const fetchIssues = () => {
                              <h3 class="issue_${status.toLowerCase()}">${description}</h3>
                               <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
                               <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
-                              <a href="#" onclick="closeIssue(${id})" class="btn btn-warning">Close</a>
+                              <a href="#" onclick="closeIssue(${id})" class="btn btn-warning close_btn_${status.toLowerCase()}">Close</a>
                               <a href="#" onclick="deleteIssue(${id})" class="btn btn-danger">Delete</a>
                               </div>`;
   }
